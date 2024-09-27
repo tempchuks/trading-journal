@@ -1,13 +1,168 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+}
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.container {
+  display: flex;
+  width: auto;
+  height: auto;
+  gap: 1rem;
+  margin: 2rem;
+}
+
+.profile-container {
+  height: 500px;
+  width: 350px;
+}
+.scroll {
+  overflow-y: scroll;
+}
+
+.profile-container button {
+  float: right;
+  margin-right: 1.2rem;
+}
+
+.profile-container ul {
+  list-style-type: none;
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.profile-container ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.profile-container ul li:hover {
+  background-color: rgb(236, 224, 243);
+}
+.selected {
+  background-color: rgb(236, 224, 243);
+}
+
+.div {
+  display: flex;
+
+  gap: 1rem;
+  color: blueviolet;
+}
+.div div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  gap: 0.2rem;
+  color: blueviolet;
+}
+
+.profile-img {
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  border: 2px solid blueviolet;
+}
+
+.journal-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 500px;
+  min-width: 500px;
+  background-color: white;
+  color: blueviolet;
+  border: 2px solid blueviolet;
+}
+.journal-container h1 {
+  text-align: center;
+  color: blueviolet;
+  margin-bottom: 1rem;
+}
+
+.button {
+  height: 35px;
+  min-width: 75px;
+  border-radius: 7px;
+  border: none;
+  background-color: blueviolet;
+  color: white;
+  font-weight: bold;
+}
+.add-button {
+  height: 35px;
+  width: 90px;
+  border-radius: 7px;
+  border: none;
+  background-color: blueviolet;
+  color: white;
+  font-weight: bold;
+}
+.add-form {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background-color: blueviolet;
+  color: white;
+  font-weight: bold;
+  padding: 1rem;
+}
+.add-form div {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 1rem;
+}
+.add-form input {
+  background-color: blueviolet;
+  color: white;
+  height: 30px;
+  border-radius: 7px;
+  border: 2px solid white;
+  font-weight: bold;
+}
+.add-form button {
+  background-color: blueviolet;
+  color: white;
+  font-weight: bold;
+  border: 2px solid white;
+  width: 90px;
+  height: 35px;
+}
+.add-form input:focus {
+  outline: none;
+}
+button {
+  cursor: pointer;
+}
+.form-container {
+  display: grid;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.form-container div {
+  font-weight: bold;
+
+  color: blueviolet;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container div input,
+.form-container div select {
+  width: 300px;
+  height: 25px;
+  outline: none;
+  color: blueviolet;
 }
