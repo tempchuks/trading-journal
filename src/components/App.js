@@ -30,63 +30,16 @@ export default function App() {
   const [friends, setFriends] = useState([]);
   const [isSelected, setIsSelected] = useState(false);
   const [curFriend, setCurFriend] = useState(null);
-  const [dates, setDate] = useState("");
-  const [pair, setPair] = useState("");
-  const [outcome, setOutCome] = useState("breakeven");
-  const [outcomeAmount, setOutComeAmount] = useState("");
-  const [EntryPrice, setEntryPrice] = useState("");
-  const [stopPrice, setStopPrice] = useState("");
-  const [takeprofit, setTakeProfit] = useState("");
   const [openForm, setOpenForm] = useState(false);
-  function clear() {
-    setDate("");
-    setPair("");
-    setOutCome("breakeven");
-    setOutComeAmount("");
-    setEntryPrice("");
-    setStopPrice("");
-    setTakeProfit("");
-  }
   function handleEvent(friens) {
     setCurFriend((friend) => (curFriend?.id === friens?.id ? null : friens));
-    clear();
-  }
-  function handleEventJournal(e) {
-    e.preventDefault();
-    setFriends((f) =>
-      f?.map((v) =>
-        v.id === curFriend.id
-          ? {
-              ...v,
-              activities: [
-                ...v?.activities,
-                {
-                  dates,
-                  pair,
-                  outcome,
-                  outcomeAmount:
-                    outcome === "loss" ? -outcomeAmount : outcomeAmount,
-                  EntryPrice,
-                  stopPrice,
-                  takeprofit,
-                },
-              ],
-              get balance() {
-                return this.calc();
-              },
-            }
-          : v
-      )
-    );
-    clear();
-    setOutCome("breakeven");
   }
   return (
     <div className={`container`}>
       <ProfileCard
         openForm={openForm}
-        setOpenForm={setOpenForm}
         onSelect={handleEvent}
+        setOpenForm={setOpenForm}
         isSelected={isSelected}
         setIsSelected={setIsSelected}
         friends={friends}
@@ -96,31 +49,16 @@ export default function App() {
         curFriend={curFriend}
       />
       <div className="journal-container">
-        {
+        {curFriend && (
           <JournalForm
-            handleEventJournal={handleEventJournal}
-            clear={clear}
-            Button={Button}
             setCurFriend={setCurFriend}
+            key={curFriend.name}
+            Button={Button}
             curFriend={curFriend}
             friends={friends}
             setFriends={setFriends}
-            dates={dates}
-            setDate={setDate}
-            pair={pair}
-            setPair={setPair}
-            outcome={outcome}
-            setOutCome={setOutCome}
-            outcomeAmount={outcomeAmount}
-            setOutComeAmount={setOutComeAmount}
-            EntryPrice={EntryPrice}
-            setEntryPrice={setEntryPrice}
-            stopPrice={stopPrice}
-            setStopPrice={setStopPrice}
-            takeprofit={takeprofit}
-            setTakeProfit={setTakeProfit}
           />
-        }
+        )}
       </div>
     </div>
   );

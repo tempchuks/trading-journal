@@ -1,27 +1,58 @@
+import { useState } from "react";
 export default function JournalForm({
   Button,
   curFriend,
   friends,
   setFriends,
-  dates,
-  setDate,
-  pair,
-  setPair,
-  outcome,
-  setOutCome,
-  outcomeAmount,
-  setOutComeAmount,
-  EntryPrice,
-  setEntryPrice,
-  stopPrice,
-  setStopPrice,
-  takeprofit,
-  setTakeProfit,
-  clear,
-  handleEventJournal,
 }) {
-  if (!curFriend) return;
+  const [dates, setDate] = useState("");
+  const [pair, setPair] = useState("");
+  const [outcome, setOutCome] = useState("breakeven");
+  const [outcomeAmount, setOutComeAmount] = useState("");
+  const [EntryPrice, setEntryPrice] = useState("");
+  const [stopPrice, setStopPrice] = useState("");
+  const [takeprofit, setTakeProfit] = useState("");
 
+  function handleEventJournal(e) {
+    e.preventDefault();
+    setFriends((f) =>
+      f?.map((v) =>
+        v.id === curFriend.id
+          ? {
+              ...v,
+              activities: [
+                ...v?.activities,
+                {
+                  dates,
+                  pair,
+                  outcome,
+                  outcomeAmount:
+                    outcome === "loss" ? -outcomeAmount : outcomeAmount,
+                  EntryPrice,
+                  stopPrice,
+                  takeprofit,
+                },
+              ],
+              get balance() {
+                return this.calc();
+              },
+            }
+          : v
+      )
+    );
+    clear();
+    setOutCome("breakeven");
+  }
+  function clear() {
+    setDate("");
+    setPair("");
+    setOutCome("breakeven");
+    setOutComeAmount("");
+    setEntryPrice("");
+    setStopPrice("");
+    setTakeProfit("");
+  }
+  if (!curFriend) return;
   console.log(friends);
   return (
     <form onSubmit={handleEventJournal} className="journal-container">
